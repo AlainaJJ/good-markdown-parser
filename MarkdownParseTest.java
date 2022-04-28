@@ -102,14 +102,14 @@ public class MarkdownParseTest {
 
     @Test
     public void Test9() throws IOException{
-        List expected = List.of("a link on the first line");
+        List expected = List.of();
 
         Path fileName = Path.of("test-break.md");
         String content = Files.readString(fileName);
         ArrayList<String> actual = MarkdownParse.getLinks(content);
 
         assertEquals(expected, actual);
-        
+
     }
 }
 
