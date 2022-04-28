@@ -99,5 +99,16 @@ public class MarkdownParseTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void Test9() throws IOException{
+        List expected = List.of("a link on the first line");
+
+        Path fileName = Path.of("test-break.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> actual = MarkdownParse.getLinks(content);
+
+        assertEquals(expected, actual);
+    }
 }
 
