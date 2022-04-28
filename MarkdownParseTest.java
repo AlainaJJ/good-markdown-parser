@@ -69,7 +69,7 @@ public class MarkdownParseTest {
 
     @Test
     public void Test6() throws IOException{
-        List expected = List.of("page.com");
+        List expected = List.of();
 
         Path fileName = Path.of("test-file6.md");
         String content = Files.readString(fileName);

@@ -29,16 +29,19 @@ public class MarkdownParse {
                 break;
             }
 
+            /*
             if (openBracket - 1 == markdown.indexOf("!")) {
                 //currentIndex = closeParen + 1;
                 currentIndex++;
-            }
+            }*/
             
             if (markdown.substring(openParen + 1, closeParen).length() != 0 &&
                 markdown.substring(closeBracket + 1, openParen).length() == 0 &&
                 !markdown.substring(openParen + 1, closeParen).contains("\n")
             ){
-                toReturn.add(markdown.substring(openParen + 1, closeParen));
+                if (markdown.indexOf("!", currentIndex) != openBracket - 1 || !markdown.contains("!")) {
+                    toReturn.add(markdown.substring(openParen + 1, closeParen));
+                }
             }
             
             currentIndex = closeParen + 1;
