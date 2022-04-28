@@ -110,5 +110,17 @@ public class MarkdownParseTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void Test10() throws IOException{
+        List expected = List.of("actual link", "! inside link");
+
+        Path fileName = Path.of("image-file.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> actual = MarkdownParse.getLinks(content);
+
+        assertEquals(expected, actual);
+    }
+
 }
 

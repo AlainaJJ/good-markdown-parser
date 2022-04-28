@@ -19,12 +19,19 @@ public class MarkdownParse {
             int openParen = markdown.indexOf("(", closeBracket);
             int closeParen = markdown.indexOf(")", openParen);
 
-            if(openBracket >  closeBracket ||
-                openBracket >  openParen ||
-                openBracket >  closeParen){ break; }
+            if(openBracket > closeBracket ||
+                openBracket > openParen ||
+                openBracket > closeParen){ 
+                break; 
+            }
             
             if(openBracket == -1 || closeParen == -1){
                 break;
+            }
+
+            if (openBracket - 1 == markdown.indexOf("!")) {
+                //currentIndex = closeParen + 1;
+                currentIndex++;
             }
             
             if (markdown.substring(openParen + 1, closeParen).length() != 0 &&
