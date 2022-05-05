@@ -121,6 +121,5 @@ public class MarkdownParseTest {
 
         assertEquals(expected, actual);
     }
-
 }
 
