@@ -2,6 +2,9 @@
 //javac -cp .:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar MarkdownParseTest.java
 //java -cp .:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore MarkdownParseTest
 
+//javac -cp ".;libs\junit-4.12.jar;libs\hamcrest-core-1.3.jar" MarkdownParseTest.java 
+//java -cp ".;libs\junit-4.12.jar;libs\hamcrest-core-1.3.jar" org.junit.runner.JUnitCore MarkdownParseTest
+
 import static org.junit.Assert.*;
 import org.junit.*;
 
@@ -124,38 +127,35 @@ public class MarkdownParseTest {
 
     @Test
     public void snipTest1() throws IOException{
-        MarkdownParse newMP = new MarkdownParse();
-        Path fileName = Path.of("snippet-test-1.md");
-        String content = Files.readString(fileName);
-        ArrayList<String> links = newMP.getLinks(content);
+        List expected = List.of("google.com");
 
-        List example = List.of("google.com");
-        
-        assertEquals(example, links);
+        Path fileName = Path.of("snippet-test1.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> actual = MarkdownParse.getLinks(content);
+
+        assertEquals(expected, actual);
     }
 
     @Test
     public void snipTest2() throws IOException{
-        MarkdownParse newMP = new MarkdownParse();
-        Path fileName = Path.of("snippet-test-2.md");
-        String content = Files.readString(fileName);
-        ArrayList<String> links = newMP.getLinks(content);
+        List expected = List.of("a.com", "a.com(())", "example.com");
 
-        List example = List.of("a.com", "a.com(())", "example.com");
-        
-        assertEquals(example, links);
+        Path fileName = Path.of("snippet-test2.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> actual = MarkdownParse.getLinks(content);
+
+        assertEquals(expected, actual);
     }
 
     @Test
     public void snipTest3() throws IOException{
-        MarkdownParse newMP = new MarkdownParse();
-        Path fileName = Path.of("snippet-test-3.md");
-        String content = Files.readString(fileName);
-        ArrayList<String> links = newMP.getLinks(content);
+        List expected = List.of("https://sites.google.com/eng.ucsd.edu/cse-15l-spring-2022/schedule");
 
-        List example = List.of("https://sites.google.com/eng.ucsd.edu/cse-15l-spring-2022/schedule");
-        
-        assertEquals(example, links);
+        Path fileName = Path.of("snippet-test3.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> actual = MarkdownParse.getLinks(content);
+
+        assertEquals(expected, actual);
     }
 }
 
